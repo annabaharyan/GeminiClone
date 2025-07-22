@@ -1,7 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
 
 const apiKey = import.meta.env.VITE_API_GEMINI_KEY;
-console.log(apiKey, 'apyKey');
 
 async function chat(prompt) {
   const ai = new GoogleGenAI({ apiKey });

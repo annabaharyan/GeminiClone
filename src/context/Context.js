@@ -1,6 +1,7 @@
 import { createContext } from 'react';
 
-export const Context = createContext({
+const AIContext = createContext({
   onSent: () => {},
 });
 
+export default AIContext;
