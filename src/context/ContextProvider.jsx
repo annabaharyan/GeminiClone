@@ -21,12 +21,15 @@ const ContextProvider = ({ children }) => {
   };
 
   const onSent = async () => {
+    if (!inputValue.trim()) return;
+
     setLoading(true);
     setShowResult(true);
     setResult('');
 
     try {
       setRecentPrompt(inputValue);
+
       const response = await chat(inputValue);
 
       const responseArray = response.split('**');
@@ -34,6 +37,14 @@ const ContextProvider = ({ children }) => {
         .map((part, idx) => (idx % 2 === 1 ? `<b>${part}</b>` : part))
         .join('')
         .replace(/\*/g, '<br>');
+
+      setPreviousPrompts((prev) => {
+        const exists = prev.find((entry) => entry.prompt === inputValue.trim());
+        if (!exists) {
+          return [{ prompt: inputValue.trim(), response: formatted }, ...prev];
+        }
+        return prev;
+      });
 
       typeTextWithEffect(formatted);
     } catch (error) {
@@ -50,11 +61,13 @@ const ContextProvider = ({ children }) => {
     setInputValue,
     recentPrompt,
     setRecentPrompt,
+    setShowResult,
     previousPrompts,
     setPreviousPrompts,
     showResult,
     loading,
     result,
+    setResult,
     onSent,
   };
 

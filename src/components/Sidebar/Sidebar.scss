@@ -27,16 +27,6 @@
     .recent-title {
       margin-block: 20px;
     }
-    .recent-entry {
-      @include mixins.flex($align: flex-start, $gap: 10px);
-      padding: 10px 40px 10px 10px;
-      border-radius: 50px;
-      color: #282828;
-      cursor: pointer;
-      &:hover {
-        background-color: #e2e6eb;
-      }
-    }
   }
   .recent-entry {
     @include mixins.flex($align: flex-start, $gap: 10px);
@@ -47,10 +37,28 @@
     &:hover {
       background-color: #e2e6eb;
     }
+    .entry-content{
+      @include mixins.flex($align: flex-start, $gap: 10px);
+    }
+    .truncate-prompt {
+      width: 100px;
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: #282828;
+    }
+    .delete-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      color: red;
+    }
   }
   .bottom {
     @include mixins.flex(flex, column);
-    .bottom-item{
+    .bottom-item {
       padding-right: 10px;
       cursor: pointer;
     }
